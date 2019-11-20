@@ -13,4 +13,14 @@ export default class InstService {
         const res = await this.getResource('/posts/');
         return res;
     }
+    getPhotos = async () =>{
+        const res = await this.getResource('/posts');
+        return res.map(this._transformData)
+    }
+    _transformData = (post) =>{
+        return{
+            src: post.src,
+            alt: post.alt
+        }
+    }
 }
