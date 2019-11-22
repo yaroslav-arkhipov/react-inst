@@ -15,9 +15,20 @@ export default class InstService {
     }
     getPhotos = async () =>{
         const res = await this.getResource('/posts');
-        return res.map(this._transformData)
+        return res.map(this._transformPhotos)
     }
-    _transformData = (post) =>{
+    getProfile = async () =>{
+        const res = await this.getResource('/posts');
+        return res.map(this._transformProfile)
+    }
+    _transformProfile = (post) =>{
+        return {
+            name: post.name,
+            photo: post.photo,
+            altname: post.altname
+        }
+    }
+    _transformPhotos = (post) =>{
         return{
             src: post.src,
             alt: post.alt
